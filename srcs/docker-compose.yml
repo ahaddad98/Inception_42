@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
         nginx:
                 restart: always
@@ -9,7 +9,9 @@ services:
                 volumes:
                         - /home/amine/data/wp-data:/www/wordpress
                 ports:
-                        - '443:443'
+                        - "443:443"
+                networks:
+                - mynetwork
         mariadb:
                 restart: always
                 build: ./requirements/mariadb/
@@ -17,7 +19,9 @@ services:
                 volumes:
                         - /home/amine/data/mar-data:/var/lib/mysql
                 ports:
-                        - '3306:3306'
+                        - "3306:3306"
+                networks:
+                        - mynetwork
         wordpress:
                 restart: always
                 build: ./requirements/wordpress
@@ -26,6 +30,14 @@ services:
                         - nginx
                 volumes:
                         - /home/amine/data/wp-data:/www/wordpress
-                        #- /home/amine/data/mar-data:/var/lib/mysql
+      #- /home/amine/data/mar-data:/var/lib/mysql
                 ports:
-                        - '9000:9000'
+                        - "9000:9000"
+                networks:
+                        - mynetwork
+        networks:
+                mynetwork:
+                        external: true
+                        name: mynetwork
+                #external: false
+                #name: mynetwork

@@ -17,7 +17,7 @@ define( 'DB_USER', 'ahaddad' );
 define( 'DB_PASSWORD', 'ahaddad' );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'mysql' );
+define( 'DB_HOST', 'mariadb:3306' );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );

@@ -4,10 +4,20 @@ services:
                 restart: always
                 build: ./requirements/nginx/
                 image: nginx
+                depends_on:
+                        - mariadb
                 volumes:
                         - /home/amine/data/wp-data:/www/wordpress
                 ports:
                         - '443:443'
+        mariadb:
+                restart: always
+                build: ./requirements/mariadb/
+                image: mariadb
+                volumes:
+                        - /home/amine/data/mar-data:/var/lib/mysql
+                ports:
+                        - '3306:3306'
         wordpress:
                 restart: always
                 build: ./requirements/wordpress
@@ -16,5 +26,6 @@ services:
                         - nginx
                 volumes:
                         - /home/amine/data/wp-data:/www/wordpress
+                        #- /home/amine/data/mar-data:/var/lib/mysql
                 ports:
                         - '9000:9000'

@@ -11,7 +11,9 @@ services:
                 ports:
                         - "443:443"
                 networks:
-                - mynetwork
+                        - mynetwork
+                environment:
+                        - .env
         mariadb:
                 restart: always
                 build: ./requirements/mariadb/
@@ -22,7 +24,11 @@ services:
                         - "3306:3306"
                 networks:
                         - mynetwork
+                environment:
+                        - .env
         wordpress:
+                environment:
+                        - .env
                 restart: always
                 build: ./requirements/wordpress
                 image: wordpress
@@ -30,14 +36,9 @@ services:
                         - nginx
                 volumes:
                         - /home/amine/data/wp-data:/www/wordpress
-      #- /home/amine/data/mar-data:/var/lib/mysql
                 ports:
                         - "9000:9000"
                 networks:
                         - mynetwork
-        networks:
-                mynetwork:
-                        external: true
-                        name: mynetwork
-                #external: false
-                #name: mynetwork
+networks:
+        mynetwork:

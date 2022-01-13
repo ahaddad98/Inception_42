@@ -25,6 +25,18 @@ define( 'DB_CHARSET', 'utf8' );
 /** The Database Collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
 
+define( 'WP_REDIS_PASSWORD', '' );
+define('WP_REDIS_HOST', 'redis');
+define( 'WP_REDIS_PORT', 6379 );
+// define( 'WP_REDIS_PASSWORD', 'secret' );
+//define( 'WP_REDIS_TIMEOUT', 1 );
+//define( 'WP_REDIS_READ_TIMEOUT', 1 );
+
+// change the database for each site to avoid cache collisions
+//define( 'WP_REDIS_DATABASE', 0 );
+define('WP_CACHE', true);
+define('WP_CACHE_KEY_SALT', 'https://ahaddad.42.fr/wp-admin/index.php');
+
 /**#@+
  * Authentication Unique Keys and Salts.
  *

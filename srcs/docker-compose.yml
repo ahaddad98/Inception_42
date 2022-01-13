@@ -40,5 +40,18 @@ services:
                         - "9000:9000"
                 networks:
                         - mynetwork
+        redis:
+                container_name: redis
+                restart: always
+                image: redis
+                build: ./requirements/bonus/redis
+                depends_on:
+                        - wordpress
+                volumes:
+                        - /home/amine/data/wp-data:/www/wordpress
+                ports:
+                        - '6379:6379'
+                networks:
+                        - mynetwork
 networks:
         mynetwork:

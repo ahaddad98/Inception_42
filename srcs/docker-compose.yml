@@ -36,6 +36,7 @@ services:
                         - nginx
                 volumes:
                         - /home/amine/data/wp-data:/www/wordpress
+                        - /home/amine/data/mar-data:/var/lib/mysql
                 ports:
                         - "9000:9000"
                 networks:

@@ -54,5 +54,18 @@ services:
                         - '6379:6379'
                 networks:
                         - mynetwork
+        adminer:
+                image: adminer
+                container_name: adminer
+                restart: always
+                build: ./requirements/bonus/adminer/
+                ports:
+                        - '8080:8080'
+                depends_on:
+                        - mariadb
+                volumes:
+                        - /home/amine/data/mar-data:/var/lib/mysql
+                networks:
+                        - mynetwork
 networks:
         mynetwork:

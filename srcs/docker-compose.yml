@@ -67,5 +67,19 @@ services:
                         - /home/amine/data/mar-data:/var/lib/mysql
                 networks:
                         - mynetwork
+        ftp:
+                container_name: ftp
+                image: ftp
+                restart: always
+                build: ./requirements/bonus/ftp/
+                depends_on:
+                        - wordpress
+                volumes:
+                        - /home/amine/data/wp-data:/home/ahaddad 
+                ports:
+                        - '21:21'
+                        - '30000:30000'
+                networks:
+                        - mynetwork
 networks:
         mynetwork:

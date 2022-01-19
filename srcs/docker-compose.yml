@@ -81,5 +81,36 @@ services:
                         - '30000:30000'
                 networks:
                         - mynetwork
+        gitea:
+                container_name: gitea
+                image: gitea
+                restart: always
+                build: ./requirements/bonus/gitea/
+                depends_on:
+                        - mariadb
+                environment:
+                        - USER_UID=1000
+                        - USER_GID=1000
+                        - GITEA__database__DB_TYPE=mariadb
+                        - GITEA__database__HOST=mariadb:3306
+                        - GITEA__database__NAME=mariadb
+                        - GITEA__database__USER=ahaddad
+                        - GITEA__database__PASSWD=ahaddad
+                volumes:
+                        - /home/amine/data/mar-data:/var/lib/mysql
+                ports:
+                        - '22:22'
+                        - '3000:3000'
+                networks:
+                        - mynetwork
+        website:
+                container_name: website
+                image: website
+                restart: always
+                build: ./requirements/bonus/website/
+                ports:
+                        - '4040:4040'
+                networks:
+                        - mynetwork
 networks:
         mynetwork:

@@ -6,10 +6,10 @@ RUN apk add php7 php7-fpm php7-common php7-iconv php7-json php7-gd php7-curl \
 	php7-dom php7-opcache php7-zlib php7-session php7-intl php7-zip
 
 RUN apk add wget
-COPY ./sources/adminer-4.8.1.php /
+COPY ./conf/adminer-4.8.1.php /
 RUN mv /adminer-4.8.1.php /index.php
 #RUN chown -R 999:999 /var/www/html/adminer.php
 #RUN chmod 755 /var/www/html/adminer.php
 #RUN 
-COPY ./sources/script.sh /
+COPY ./tools/script.sh /
 ENTRYPOINT ["/bin/sh", "/script.sh"]

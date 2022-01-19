@@ -4,6 +4,6 @@ RUN apk add mariadb mariadb-common mariadb-client
 RUN apk add openrc
 RUN openrc
 RUN touch /run/openrc/softlevel
-COPY sources/script.sh /
-COPY sources/wordpress.sql /
+COPY ./tools/script.sh /
+COPY ./conf/wordpress.sql /
 ENTRYPOINT ["/bin/sh", "/script.sh"]

@@ -14,7 +14,7 @@ RUN wget http://wordpress.org/latest.tar.gz
 RUN tar -xzvf latest.tar.gz
 RUN rm latest.tar.gz
 RUN rm wordpress/wp-config-sample.php
-COPY ./sources/wp-config.php wordpress/
-COPY sources/script.sh /
-COPY sources/www.conf /etc/php7/php-fpm.d/
+COPY ./conf/wp-config.php wordpress/
+COPY ./tools/script.sh /
+COPY ./conf/www.conf /etc/php7/php-fpm.d/
 ENTRYPOINT ["/bin/sh", "/script.sh"]

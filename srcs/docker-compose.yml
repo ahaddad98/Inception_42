@@ -12,7 +12,7 @@ services:
                         - "443:443"
                 networks:
                         - mynetwork
-                environment:
+                env_file:
                         - .env
         mariadb:
                 restart: always
@@ -24,10 +24,10 @@ services:
                         - "3306:3306"
                 networks:
                         - mynetwork
-                environment:
+                env_file:
                         - .env
         wordpress:
-                environment:
+                env_file:
                         - .env
                 restart: always
                 build: ./requirements/wordpress
@@ -46,6 +46,8 @@ services:
                 restart: always
                 image: redis
                 build: ./requirements/bonus/redis
+                env_file:
+                        - .env
                 depends_on:
                         - wordpress
                 volumes:
@@ -63,6 +65,9 @@ services:
                         - '8080:8080'
                 depends_on:
                         - mariadb
+                
+                env_file:
+                        - .env
                 volumes:
                         - /home/amine/data/mar-data:/var/lib/mysql
                 networks:
@@ -74,6 +79,8 @@ services:
                 build: ./requirements/bonus/ftp/
                 depends_on:
                         - wordpress
+                env_file:
+                        - .env
                 volumes:
                         - /home/amine/data/wp-data:/home/ahaddad 
                 ports:
@@ -88,14 +95,8 @@ services:
                 build: ./requirements/bonus/gitea/
                 depends_on:
                         - mariadb
-                environment:
-                        - USER_UID=1000
-                        - USER_GID=1000
-                        - GITEA__database__DB_TYPE=mariadb
-                        - GITEA__database__HOST=mariadb:3306
-                        - GITEA__database__NAME=mariadb
-                        - GITEA__database__USER=ahaddad
-                        - GITEA__database__PASSWD=ahaddad
+                env_file:
+                        - .env
                 volumes:
                         - /home/amine/data/mar-data:/var/lib/mysql
                 ports:
@@ -110,6 +111,9 @@ services:
                 build: ./requirements/bonus/website/
                 ports:
                         - '4040:4040'
+                
+                env_file:
+                        - .env
                 networks:
                         - mynetwork
 networks:

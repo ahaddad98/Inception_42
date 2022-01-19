@@ -1,7 +1,7 @@
 #!/bin/sh
 
-echo -e "123123123\n123123123" | adduser ahaddad
-echo ahaddad | tee -a /etc/vsftpd.userlist
+echo -e "$FT_PASS\n$FT_PASS" | adduser $FT_USER
+echo $FT_USER | tee -a /etc/vsftpd.userlist
 mkdir /home/ahaddad/wordpress
 chown -R ahaddad:ahaddad /home/ahaddad/
 #chmod 777 /home/ahaddad/wordpress
